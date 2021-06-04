@@ -10,7 +10,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
+```{r global_options}
+knitr::opts_chunk$set(fig.path='Figs/')
+```
 
 #libraries
 ```{r, echo = TRUE}
@@ -63,7 +65,7 @@ Fig3 <- ggplot(Q8_summary, aes(order, perc)) +
     hjust = 1
   ))
   Fig3 <- Fig3 + guides(fill = guide_legend(title = "Gender"))
-Fig3
+plot(Fig3)
 ```
 
 ## More later

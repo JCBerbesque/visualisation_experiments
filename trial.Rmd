@@ -1,5 +1,5 @@
 ---
-title: "speed and distance"
+title: "Playing with visualisations in markdown"
 output: html_document
 ---
 
@@ -7,22 +7,67 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
+#libraries
+```{r, echo = TRUE}
+library(ggplot2)
+library(jpeg)
+library(dplyr)
+library(tidyverse)
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+library(readxl)
+#try using 'path' instead?
+
+
+```
+#Figure 3 data
+```{r, echo = TRUE}
+
+Q8_summary <-
+read_excel("/Users/jcberbesque/Desktop/Data Science/visualisation_experiments/visualisation_experiments/Q8_summary.xlsx")
+View(Q8_summary) 
+```
+#Bar Plot: Fig 3. Measures that make festivals feel safer by sex/gender.n=199
+```{r, echo = TRUE,  results = 'asis'}
+Fig3 <- ggplot(Q8_summary, aes(order, perc)) +
+  geom_bar(
+    aes(fill = gender),
+    width = 0.8,
+    position = position_dodge(width = 0.8),
+    colour = "black",
+    stat = "identity"
+  ) +
+  scale_x_discrete(
+    labels = c(
+      "Going with friends",
+      "Health tents",
+      "Festival ethos",
+      "Citizen security",
+      "Venue location",
+      "Police",
+      "Surveillance",
+      "Private security",
+      "None of these"
+    )
+  ) +
+  xlab("Safety Measures") +
+  ylab("Percent made to feel safer") +
+  ggtitle("Preferred safety measures by Gender") +
+  theme(axis.text.x = element_text(
+    angle = 60,
+    size = 15,
+    hjust = 1
+  ))
+  Fig3 <- Fig3 + guides(fill = guide_legend(title = "Gender"))
+Fig3
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+## More later
+
+
+
+

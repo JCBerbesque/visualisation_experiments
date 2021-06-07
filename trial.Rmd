@@ -30,7 +30,7 @@ library(readxl)
 ```{r, echo = TRUE}
 
 Q8_summary <-
-read_excel("/Users/jcberbesque/Desktop/Data Science/visualisation_experiments/visualisation_experiments/Q8_summary.xlsx")
+read_excel("/Users/jcberbesque/Desktop/Data Science/visualisation_experiments/Q8_summary.xlsx")
 View(Q8_summary) 
 ```
 #Bar Plot: Fig 3. Measures that make festivals feel safer by sex/gender.n=199
